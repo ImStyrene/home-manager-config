@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>home</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    height: 100vh;
+    background: #1a1b26;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Iosevka', monospace;
+    transition: background-image 0.4s ease;
+  }
+
+  .clock {
+    color: #c0caf5;
+    font-size: 8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 3rem rgba(0,0,0,0.8), 0 0 1rem rgba(0,0,0,0.5);
+    background: rgba(26, 27, 38, 0.3);
+    backdrop-filter: blur(1rem);
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .picker-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(26, 27, 38, 0.6);
+    backdrop-filter: blur(0.5rem);
+    color: #7aa2f7;
+    border: 1px solid #565f89;
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: 0.2s;
+  }
+  .picker-toggle:hover {
+    background: rgba(26, 27, 38, 0.9);
+    border-color: #7aa2f7;
+  }
+
+  .picker {
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    background: rgba(26, 27, 38, 0.85);
+    backdrop-filter: blur(1rem);
+    border: 1px solid #565f89;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 99;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  .picker.open { display: flex; }
+
+  .picker label {
+    color: #a9b1d6;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  .picker-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .picker-opt {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: 0.15s;
+    border: 1px solid transparent;
+  }
+  .picker-opt:hover {
+    background: rgba(122, 162, 247, 0.15);
+    border-color: #565f89;
+  }
+  .picker-opt.active {
+    background: rgba(122, 162, 247, 0.2);
+    border-color: #7aa2f7;
+  }
+
+  .picker-opt img {
+    width: 5rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 0.3rem;
+    border: 1px solid #414868;
+  }
+
+  .picker-opt span {
+    color: #c0caf5;
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+  <div class="clock" id="clock" title="click to open wallpaper picker">00:00:00</div>
+
+  <button class="picker-toggle" id="toggleBtn">wallpapers</button>
+
+  <div class="picker" id="picker">
+    <label>select wallpaper</label>
+    <div class="picker-grid" id="grid"></div>
+  </div>
+
+  <script src="wallpapers.js"></script>
+
+  <script>
+    const BASE = "file:///home/Styrene/.config/home-manager/modules/qutebrowser/wallpapers/";
+    const LS_KEY = 'qute-wallpaper';
+
+    const body = document.body;
+    const picker = document.getElementById('picker');
+    const grid = document.getElementById('grid');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const clock = document.getElementById('clock');
+
+    function setWallpaper(index) {
+      const file = WALLPAPERS[index];
+      body.style.backgroundImage = `url('${BASE}${file}')`;
+      localStorage.setItem(LS_KEY, index);
+      document.querySelectorAll('.picker-opt').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+      });
+    }
+
+    function togglePicker() {
+      picker.classList.toggle('open');
+    }
+
+    function buildPicker() {
+      if (WALLPAPERS.length === 0) {
+        grid.innerHTML = '<span style="color:#565f89;font-size:0.8rem;padding:0.5rem;">put images in the wallpapers/ directory and rebuild</span>';
+        return;
+      }
+
+      WALLPAPERS.forEach((file, i) => {
+        const label = file.replace(/\.[^.]+$/, '');
+        const div = document.createElement('div');
+        div.className = 'picker-opt';
+        div.innerHTML = `
+          <img src="${BASE}${file}" alt="${label}" loading="lazy">
+          <span>${label}</span>
+        `;
+        div.addEventListener('click', () => setWallpaper(i));
+        grid.appendChild(div);
+      });
+
+      const saved = localStorage.getItem(LS_KEY);
+      if (saved !== null && WALLPAPERS[saved]) {
+        setWallpaper(Number(saved));
+      } else if (WALLPAPERS[0]) {
+        setWallpaper(0);
+      }
+    }
+
+    toggleBtn.addEventListener('click', togglePicker);
+    clock.addEventListener('click', togglePicker);
+
+    function updateClock() {
+      const now = new Date();
+      clock.textContent =
+        String(now.getHours()).padStart(2, '0') + ':' +
+        String(now.getMinutes()).padStart(2, '0') + ':' +
+        String(now.getSeconds()).padStart(2, '0');
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    buildPicker();
+  </script>
+</body>
+</html>
