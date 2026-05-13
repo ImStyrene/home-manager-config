@@ -7,7 +7,7 @@
     config = {
       keep-open = true;
       volume = "60";
-      ytdl-format = "bestvideo[height<=720]+bestaudio/best[405]";
+      ytdl-format = "bestvideo[height<=720]+bestaudio/best";
     };
     scripts = with pkgs.mpvScripts; [
       memo
