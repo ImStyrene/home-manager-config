@@ -16,18 +16,18 @@
       normal = {
         ",r" = "config-source";
         ",tdm" = "config-cycle colors.webpage.darkmode.enabled true false";
-        ",m" = "spawn mpv {url}";
+        ",m" = "hint links spawn mpv {url}";
       };
     };
 
     settings = {
       url = {
-        default_page = "file:///home/Styrene/qutebrowser/index.html";
-        start_pages = ["file:///home/Styrene/qutebrowser/index.html"];
+        default_page = "file:///home/Styrene/.config/home-manager/modules/qutebrowser/index.html";
+        start_pages = ["file:///home/Styrene/.config/home-manager/modules/qutebrowser/index.html"];
       };
 
       tabs = {
-        position = "left";
+        position = "top";
         show = "switching";
       };
 
@@ -254,7 +254,7 @@
       import json
 
       wallpaper_dir = os.path.expanduser("~/.config/home-manager/modules/qutebrowser/wallpapers")
-      out_file = os.path.expanduser("~/qutebrowser/wallpapers.js")
+      out_file = os.path.expanduser("~/.config/home-manager/modules/qutebrowser/wallpapers.js")
       exts = (".jpg", ".jpeg", ".png", ".gif", ".webp")
 
       if os.path.isdir(wallpaper_dir):
@@ -274,6 +274,6 @@
 
   xdg.configFile."qutebrowser/darkmode-fixes.css".source = ./darkmode-fixes.css;
 
-  home.file."qutebrowser/index.html".source = ./index.html;
+  home.file."~/.config/home-manager/modules/qutebrowser/index.html".source = ./index.html;
 
 }
