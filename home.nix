@@ -27,4 +27,11 @@ in {
     audacity
     pear-desktop
   ];
+
+  # === NIX-RELATED === #
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
 }
