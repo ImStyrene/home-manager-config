@@ -8,8 +8,9 @@ in
     enable = true;
     package = pkgs.wezterm;
     enableZshIntegration = true;
+
     settings = {
-      font = mkLuaInline ''wezterm.font("CaskaydiaCoveNerdFont")'';
+      font = mkLuaInline ''wezterm.font("Hack Nerd Font Propo")'';
       font_size = 12.0;
       line_height = 1.05;
       window_background_opacity = 0.9;

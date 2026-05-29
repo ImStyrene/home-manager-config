@@ -1,3 +1,4 @@
 modules/git.nix
 modules/qutebrowser/wallpapers/*
 !modules/qutebrowser/wallpapers/.gitkeep
+modules/redshift.nix

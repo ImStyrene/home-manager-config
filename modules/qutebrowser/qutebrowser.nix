@@ -1,29 +1,36 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+
+let
+  wallpapersDir = "${config.home.homeDirectory}/.config/home-manager/modules/qutebrowser/wallpapers";
+  wallpaperList = ["mountains.jpg" "nixos-gray.jpg" "nixos-with-shade.png"];
+  wallpapersJs = pkgs.writeText "wallpapers.js" "const WALLPAPERS = ${builtins.toJSON wallpaperList};\n";
+in
 {
   programs.qutebrowser = {
     enable = true;
     package = pkgs.qutebrowser;
 
     searchEngines = {
-      "@aw" = "https://wiki.archlinux.org/index.php?search={}&title=Special%3ASearch&fulltext=1";
-      "@nw" = "https://wiki.nixos.org/w/index.php?search={}";
-      "@inv" = "https://inv.nadeko.net/search?q={}";
-      "@np" = "https://search.nixos.org/packages?channel=unstable&query={}";
-      "@no" = "https://search.nixos.org/options?channel=unstable&query={}";
+      "aw" = "https://wiki.archlinux.org/index.php?search={}&title=Special%3ASearch&fulltext=1";
+      "nw" = "https://wiki.nixos.org/w/index.php?search={}";
+      "inv" = "https://invidious.nerdvpn.de/search?q={}";
+      "np" = "https://search.nixos.org/packages?channel=unstable&query={}";
+      "no" = "https://search.nixos.org/options?channel=unstable&query={}";
     };
 
     keyBindings = {
       normal = {
         ",r" = "config-source";
-        ",tdm" = "config-cycle colors.webpage.darkmode.enabled true false";
-        ",m" = "hint links spawn mpv {url}";
+        "tdm" = "config-cycle colors.webpage.darkmode.enabled true false";
+        ",m" = "hint links spawn mpv mpv --player-operation-mode=pseudo-gui {hint-url}";
+	"yl" = "hint links yank";
       };
     };
 
     settings = {
       url = {
-        default_page = "file:///home/Styrene/.config/home-manager/modules/qutebrowser/index.html";
-        start_pages = ["file:///home/Styrene/.config/home-manager/modules/qutebrowser/index.html"];
+        default_page = "file://${config.xdg.configHome}/qutebrowser/index.html";
+        start_pages = ["file://${config.xdg.configHome}/qutebrowser/index.html"];
       };
 
       tabs = {
@@ -33,7 +40,7 @@
 
       statusbar.show = "in-mode";
 
-      content.user_stylesheets = ["darkmode-fixes.css"];
+      content.user_stylesheets = ["${config.xdg.configHome}/qutebrowser/darkmode-fixes.css"];
 
       colors = {
         webpage = {
@@ -41,7 +48,6 @@
           darkmode.enabled = true;
         };
 
-        # Completion
         completion = {
           fg = "#c0caf5";
           odd.bg = "#16161e";
@@ -70,7 +76,6 @@
           };
         };
 
-        # Context menu
         contextmenu = {
           disabled = {
             bg = "#16161e";
@@ -86,7 +91,6 @@
           };
         };
 
-        # Downloads
         downloads = {
           bar.bg = "#16161e";
           start = {
@@ -100,21 +104,18 @@
           error.fg = "#db4b4b";
         };
 
-        # Hints
         hints = {
           fg = "#1a1b26";
           bg = "#e0af68";
           match.fg = "#9ece6a";
         };
 
-        # Keyhint
         keyhint = {
           fg = "#c0caf5";
           suffix.fg = "#e0af68";
           bg = "#16161e";
         };
 
-        # Messages
         messages = {
           error = {
             fg = "#db4b4b";
@@ -133,7 +134,6 @@
           };
         };
 
-        # Prompts
         prompts = {
           fg = "#c0caf5";
           border = "#27a1b9";
@@ -144,7 +144,6 @@
           };
         };
 
-        # Statusbar
         statusbar = {
           normal = {
             fg = "#7aa2f7";
@@ -191,7 +190,6 @@
           };
         };
 
-        # Tabs
         tabs = {
           bar.bg = "#15161e";
           indicator = {
@@ -239,7 +237,6 @@
           };
         };
 
-        # Tooltip
         tooltip = {
           bg = "#16161e";
           fg = "#c0caf5";
@@ -247,33 +244,13 @@
       };
     };
 
-    loadAutoconfig = true;
-
-    extraConfig = ''
-      import os
-      import json
-
-      wallpaper_dir = os.path.expanduser("~/.config/home-manager/modules/qutebrowser/wallpapers")
-      out_file = os.path.expanduser("~/.config/home-manager/modules/qutebrowser/wallpapers.js")
-      exts = (".jpg", ".jpeg", ".png", ".gif", ".webp")
-
-      if os.path.isdir(wallpaper_dir):
-          files = [f for f in os.listdir(wallpaper_dir) if f.lower().endswith(exts)]
-          files.sort()
-      else:
-          files = []
-
-      os.makedirs(os.path.dirname(out_file), exist_ok=True)
-
-      with open(out_file, "w") as f:
-          f.write("const WALLPAPERS = ")
-          json.dump(files, f)
-          f.write(";\n")
-    '';
+    loadAutoconfig = false;
   };
 
-  xdg.configFile."qutebrowser/darkmode-fixes.css".source = ./darkmode-fixes.css;
-
-  home.file."~/.config/home-manager/modules/qutebrowser/index.html".source = ./index.html;
-
+  xdg.configFile = {
+    "qutebrowser/darkmode-fixes.css".source = ./darkmode-fixes.css;
+    "qutebrowser/index.html".source = ./index.html;
+    "qutebrowser/wallpapers.js".source = wallpapersJs;
+    "qutebrowser/wallpapers".source = config.lib.file.mkOutOfStoreSymlink wallpapersDir;
+  };
 }

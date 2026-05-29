@@ -23,10 +23,39 @@ in {
 
   # === PACKAGES === #
   home.packages = with pkgs; [
+
+    # - Utilities - #
+    imagemagick
+    inkscape
+    jp2a
+
+    # - Editing - #
     kdePackages.kdenlive
+    python314Packages.openai-whisper
+    python314Packages.srt
     audacity
+
+    # - Music - #
     pear-desktop
+
+    # - Creativity - #
+    blender
+    krita
+
+    # - Fun - #
+    cava
+
+    # - Languages - #
+    go
+    
   ];
+  
+  # === XDG === #
+  xdg = {
+    autostart = {
+      enable = true;
+    };
+  };
 
   # === NIX-RELATED === #
   nixpkgs = {
