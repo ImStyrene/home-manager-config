@@ -2,7 +2,7 @@
   description = "Home Manager configuration for Styrene";
 
   inputs = {
-    pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    pkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     pkgs_stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager/master";
