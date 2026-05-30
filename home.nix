@@ -37,6 +37,9 @@ in {
 
     # - Music - #
     pear-desktop
+    lmms
+
+    # - Productivity - #
 
     # - Creativity - #
     blender
@@ -48,7 +51,11 @@ in {
     # - Languages - #
     go
     
-  ];
+  ]
+    ++
+  (with pkgs_stable; [
+    pomodoro-gtk
+  ]);
   
   # === XDG === #
   xdg = {
