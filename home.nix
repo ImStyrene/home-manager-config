@@ -1,6 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs_stable, ... }:
 
 let
+
   scanDir = dir:
     let
       entries = builtins.readDir dir;
@@ -51,11 +52,9 @@ in {
     # - Languages - #
     go
     
-  ]
-    ++
-  (with pkgs_stable; [
-    pomodoro-gtk
-  ]);
+  ] ++ (with pkgs_stable; [
+      pomodoro-gtk
+    ]);
   
   # === XDG === #
   xdg = {
