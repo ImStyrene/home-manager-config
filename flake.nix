@@ -4,18 +4,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
-    systems.url = "github:nix-systems/default/future-26.11";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.systems.follows = "systems";
-    };
+    nixvim.url = "github:nix-community/nixvim";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, systems, home-manager, nixvim, ... }:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, nixvim, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
