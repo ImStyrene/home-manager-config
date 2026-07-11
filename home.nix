@@ -1,7 +1,6 @@
 { config, lib, pkgs, pkgs_stable, ... }:
 
 let
-
   scanDir = dir:
     let
       entries = builtins.readDir dir;
@@ -29,6 +28,12 @@ in {
     imagemagick
     inkscape
     jp2a
+    anydesk
+    signal-desktop
+    tor-browser
+
+    # - Games - #
+    steam
 
     # - Editing - #
     kdePackages.kdenlive
@@ -41,6 +46,8 @@ in {
     lmms
 
     # - Productivity - #
+    proton-vpn
+    fokus
 
     # - Creativity - #
     blender
@@ -48,14 +55,15 @@ in {
 
     # - Fun - #
     cava
+    easyeffects
 
     # - Languages - #
     go
-    
+
   ] ++ (with pkgs_stable; [
-      pomodoro-gtk
-    ]);
-  
+    pomodoro-gtk
+  ]);
+
   # === XDG === #
   xdg = {
     autostart = {
@@ -67,6 +75,10 @@ in {
   nixpkgs = {
     config = {
       allowUnfree = true;
+      permittedInsecurePackages = [
+        "librewolf-unwrapped-151.0.2-1"
+        "librewolf-151.0.2-1"
+      ];
     };
   };
 }
