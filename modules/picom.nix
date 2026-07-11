@@ -6,25 +6,17 @@
     package = pkgs.picom;
 
     backend = "glx";
-    vSync = true;
-    fade = true;
-    fadeDelta = 5;
-    fadeSteps = [ 0.03 0.03 ];
-    shadow = true;
-    shadowOpacity = 0.5;
-    shadowOffsets = [ (-12) (-12) ];
-    activeOpacity = 1.0;
-    inactiveOpacity = 0.85;
+    vSync = false;
+    fade = false;
+    shadow = false;
     settings = {
-      inactive-dim = 0.08;
-      inactive-dim-fixed = true;
+      use-damage = true;
+      unredir-if-possible = false;
       blur = {
-        method = "dual_kawase";
-        strength = 4;
+        method = "gaussian";
+        size = 10;
+        deviation = 5;
       };
-      paint-on-overlay = true;
-      unredir-if-possible = true;
-      use-damage = false;
     };
   };
 }
