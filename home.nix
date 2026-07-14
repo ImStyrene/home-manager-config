@@ -18,7 +18,7 @@ in {
   home = {
     username = "Styrene";
     homeDirectory = "/home/Styrene";
-    stateVersion = "25.05";
+    stateVersion = "26.05";
   };
 
   # === PACKAGES === #
