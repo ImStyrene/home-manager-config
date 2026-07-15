@@ -32,6 +32,8 @@ in {
     signal-desktop
     tor-browser
     rofimoji
+    htmlq
+    jq
 
     # - Games - #
     steam
