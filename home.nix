@@ -31,6 +31,7 @@ in {
     anydesk
     signal-desktop
     tor-browser
+    rofimoji
 
     # - Games - #
     steam
