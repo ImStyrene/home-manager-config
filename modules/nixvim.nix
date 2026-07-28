@@ -313,7 +313,7 @@
                 desc_hl = "String";
                 key = "c";
                 key_hl = "Number";
-                action = "cd ~/.config/nixvim | e .";
+                action = "cd ~/.config/home-manager/modules/nixvim.nix | e .";
               }
               {
                 icon = "󰩈 ";
