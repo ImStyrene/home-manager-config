@@ -21,7 +21,7 @@ in
         top = 0;
         bottom = 0;
       };
-      kde_window_background_blur = true;
+      wayland_window_background_blur = true;
       color_scheme = "Tokyo Night Moon";
       keys = [ ];
       default_prog = [ "/run/current-system/sw/bin/zsh" ];
