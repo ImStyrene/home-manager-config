@@ -40,8 +40,7 @@ in {
 
     # - Editing - #
     kdePackages.kdenlive
-    python314Packages.openai-whisper
-    python314Packages.srt
+    openutau
     audacity
 
     # - Music - #
