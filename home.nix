@@ -34,6 +34,7 @@ in {
     rofimoji
     htmlq
     jq
+    gearlever
 
     # - Games - #
     steam
