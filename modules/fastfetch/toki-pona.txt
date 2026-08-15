@@ -1,37 +1,20 @@
+             .c
+ .d;         xN;        cKc
+ .XNd        0N:       oNX.
+  ,NN'       xN;      .NX'
+   'Xo        '       .x.
 
-
-
-                      ,NN'
-   co,                ONNd              .xXX'
-  ,NNNO               NNNk             .NNNN.
-   0NNNO              NNNO            .XNNNl
-   .KNNNl             NNNk            ONNNd
-    .XNNX             kNNo           .NNNd
-     .XNN,            .ll            'NNc
-      .0N.                            '.
-
-
-               .,lxO0KXXNNNNXKOkdc'
-            ,dXNNNNNNNNNXKKKKXNNNNNNKd,
-         'xXNNNNNOd:,..        ..,lONNNXo.
-       cKNNNN0l'                    .:ONNNl
-     :KNNNXl.                          'kNNK.
-    kNNNK:                               ,KNX'
-   kNNNc                                  .xNX.
-  ;NNN,                                     kNK
-  KNNo                              .       .NNd
- .NNN.      ;;.                   ,XNk       ONN
- ,NNN      cNNX,                 .NNNN.      dNN;
- ,NNX      .XNNN;                0NNNk       oNNc
- .NNN       .KNNNl             .kNNN0.       xNN;
-  XNN.       .kNNNO.          ;KNNNk.        XNN.
-  dNNc         :XNNNx'     .lKNNNXc         oNNd
-  .NNX.         .oXNNNKkkOXNNNNXl.         oNNK
-   cNNO           .;xKNNNNNNOo,          .ONN0
-    xNN0.              ....             lNNNd
-     dNNX:                            :XNNK,
-      :XNN0:                       'oXNNXl
-        oXNNXx:.              .,lkXNNN0c
-          ;xXNNNXOxolccccldx0XNNNNN0l.
-             .cx0XNNNNNNNNNNX0ko:.
-                    ....
+         .:odxkkkxoc,.
+      :ONNKkoc:;;:coxXKd.
+   .xNNx;.            'dNk.
+  lNXc.                 .xX.
+ ;NO.                     lX.
+ KN.   ..           .d:    XO
+ NN    XN:          0N0    ON
+ KN    'XNo       .kNK.    0N
+ dN,    .xNKc.  'oXNx.    ,Nd
+  X0.     .o0NNNNOl.     cNk
+  .XK'        ..       ,0Nc
+   .kNx,            'c0Nd.
+     .oKNOdl:::cox0NKx;
+         ';cclcc:,.
