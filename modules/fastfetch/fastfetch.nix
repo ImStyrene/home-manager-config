@@ -8,7 +8,7 @@
 	"$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
 
 	logo = {
-	  source = "~/.config/home-manager/modules/fastfetch/black-hole-braille.txt";
+	  source = "~/.config/home-manager/modules/fastfetch/toki-pona.txt";
 	  height = 20;
 	  padding = {
 	    top = 1;
