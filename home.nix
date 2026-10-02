@@ -59,6 +59,7 @@ in {
     # - Fun - #
     cava
     easyeffects
+    era
 
     # - Languages - #
     go
