@@ -7,7 +7,7 @@
 
     theme = "Tokyo Night Moon";
 
-    extraConfig = {
+    settings = {
       modi = "drun,window,run";
       icon-theme = "Papirus-Dark";
       show-icons = true;
