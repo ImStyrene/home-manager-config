@@ -38,6 +38,7 @@ in {
 
     # - Games - #
     steam
+    osu-lazer-bin
 
     # - Editing - #
     kdePackages.kdenlive
